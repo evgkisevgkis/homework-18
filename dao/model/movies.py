@@ -1,5 +1,6 @@
 from setup_db import db
 from sqlalchemy.orm import relationship
+from marshmallow import Schema, fields
 
 
 class Movie(db.Model):
@@ -15,3 +16,12 @@ class Movie(db.Model):
     director_id = db.Column(db.Integer, db.ForeignKey('director.id'))
     director = relationship('Director')
 
+
+class MovieSchema(Schema):
+    title = fields.Str()
+    description = fields.Str()
+    trailer = fields.Str()
+    year = fields.Str()
+    rating = fields.Float()
+    genre = fields.Str()
+    director = fields.Str()
